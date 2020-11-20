@@ -5,8 +5,8 @@ $the_title = 'Log In';
 include('header.php');
 echo "Welcome to Cookie Crumbs ";
 $currentAccount = unserialize($_SESSION['currentAccount']);
-$currentAccount->__toString();
-echo "!";
+echo $currentAccount->__toString();
+echo "!"; 
 ?>
 <?php
 include('footer.php');?>
