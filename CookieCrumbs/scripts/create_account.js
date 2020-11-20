@@ -1,8 +1,13 @@
 
 
-function validateForm(e)
+function validateForm()
 {
-    
+    var x = document.forms["cAccountForm"]["fname"].value;
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    alert("Valid");
 }
 
 function compare_passwords(e)

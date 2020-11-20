@@ -4,7 +4,7 @@
     function main_nav()
     {
         global $dtm;
-
+        //$currentAccount = null;
         $class = "container nav";
 
         if(isset($_SESSION['currentAccount']) && !empty($_SESSION['currentAccount']))

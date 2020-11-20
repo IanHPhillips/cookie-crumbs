@@ -1,7 +1,7 @@
 <?php
 session_start();
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
+//ini_set('display_errors', 'on');
+//error_reporting(E_ALL);
 include_once(__DIR__."/../config.php");
 include_once(SITE_ROOT."/classes/UserAccount.php");
 include_once(SITE_ROOT."/classes/Cart.php");

@@ -1,6 +1,6 @@
 <?php 
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
+//ini_set('display_errors', 'on');
+//error_reporting(E_ALL);
 $the_title = 'Edit Menu';
 $script='menu.js';
 include_once('classes/MenuServices.php');

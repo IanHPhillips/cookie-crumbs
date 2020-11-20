@@ -2,8 +2,7 @@
 /*
     addUser 
 */
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
+
 include_once('../includes/connection.php');
 include_once('../classes/UserAccount.php');
 include_once('../classes/Cart.php');

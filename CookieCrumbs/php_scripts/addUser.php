@@ -3,8 +3,8 @@
     addUser 
 */
 
-ini_set('display_errors', 'on');
-error_reporting(E_ALL);
+//ini_set('display_errors', 'on');
+//error_reporting(E_ALL);
 include_once('../includes/connection.php');
 include_once('login.php');
 $addUser = new addUser();
@@ -30,11 +30,11 @@ class addUser
 
     public function validateInput()
     {
-        $email = $_REQUEST["eaddr"];
+        $email = $_POST["eaddr"];
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             return false;
-        $password = $_REQUEST["password"];
-        $confPassword = $_REQUEST["confPassword"];
+        $password = $_POST["password"];
+        $confPassword = $_POST["confPassword"];
         if(!$password == $confPassword)
         {
             return false;
@@ -45,7 +45,7 @@ class addUser
     private function userExists()
     {
         $db = new Connection();
-        $sql = "Select * FROM users WHERE email_address='" . $_REQUEST["eaddr"] . "'";
+        $sql = "Select * FROM users WHERE email_address='" . $_POST["eaddr"] . "'";
         if($result = $db->conn->query($sql))
         {
             $rows = mysqli_num_rows($result);
@@ -65,10 +65,10 @@ class addUser
             if($stmt = mysqli_prepare($db->conn, $sql))
             {
                 mysqli_stmt_bind_param($stmt, "ssss", $fName, $lName, $email, $password);
-                $fName = $_REQUEST["fname"];
-                $lName = $_REQUEST["lname"];
-                $email = $_REQUEST["eaddr"];
-                $password = password_hash($_REQUEST["password"], PASSWORD_DEFAULT);
+                $fName = $_POST["fname"];
+                $lName = $_POST["lname"];
+                $email = $_POST["eaddr"];
+                $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
                 if(mysqli_stmt_execute($stmt))
                 {
                     echo "Account added succesfully";
@@ -88,13 +88,13 @@ class addUser
         $db->close();
 
         $this->addAddress();
-        $this->login($email, $_REQUEST['password']);
+        $this->login($email, $_POST['password']);
     }
 
     private function addAddress()
     {
         $db = new Connection();
-        $idQuery = $db->conn->query("SELECT user_id FROM users WHERE email_address = '".$_REQUEST['eaddr']."'");
+        $idQuery = $db->conn->query("SELECT user_id FROM users WHERE email_address = '".$_POST['eaddr']."'");
         $idArr = $idQuery->fetch_assoc();
         $id= $idArr['user_id'];
         echo strval($id);
@@ -104,12 +104,12 @@ class addUser
             if($stmt = mysqli_prepare($db->conn, $sql))
             {
                 mysqli_stmt_bind_param($stmt, "dsssss", $id, $address, $apt, $city, $state, $zip);
-                $address = $_REQUEST["address"];
-                $apt = $_REQUEST["apt"];
-                $city = $_REQUEST["city"];
-                $state = $_REQUEST["state"];
-                echo "State is:" .$_REQUEST["state"];
-                $zip = $_REQUEST["zip"];
+                $address = $_POST["address"];
+                $apt = $_POST["apt"];
+                $city = $_POST["city"];
+                $state = $_POST["state"];
+                echo "State is:" .$_POST["state"];
+                $zip = $_POST["zip"];
                 if(mysqli_stmt_execute($stmt))
                 {
                     echo "Account added succesfully";
