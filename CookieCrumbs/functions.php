@@ -7,9 +7,10 @@
 
         $class = "container nav";
 
-        $currentAccount = unserialize($_SESSION['currentAccount']);
+        if(isset($_SESSION['currentAccount']) && !empty($_SESSION['currentAccount']))
+            $currentAccount = unserialize($_SESSION['currentAccount']);
     
-        if($currentAccount == null)
+        if(empty($currentAccount))
             $personIconDest = 'login_page.php';
         else if($currentAccount->isManager() == 1)
             $personIconDest = 'manager_dashboard.php';
