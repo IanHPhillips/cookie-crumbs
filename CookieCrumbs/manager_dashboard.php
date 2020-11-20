@@ -6,7 +6,7 @@ include_once('header.php');
 $totalSales = new totalSales();
 ?>
 <div style="text-align: center;">
-<h2>Current Total Sales is $<?php echo $totalSales->getSales()?></h2>
+<h2>Current Total Sales is $<?php echo sprintf("%01.2f",$totalSales->getSales())?></h2>
 </div>
 <br>
 <div class="centered">
